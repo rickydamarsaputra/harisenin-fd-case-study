@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [CategoryController::class, 'index'])->name('category.index');
+
+// category route
+Route::controller(CategoryController::class)->prefix('category')->name('category.')->group(function () {
+    Route::get('/create', 'createView')->name('create.view');
+    Route::post('/create', 'createAction')->name('create.action');
+    Route::get('/update/{slug}', 'updateView')->name('update.view');
+    Route::put('/update/{slug}', 'updateAction')->name('update.action');
+    Route::get('/delete/{slug}', 'delete')->name('delete');
 });
