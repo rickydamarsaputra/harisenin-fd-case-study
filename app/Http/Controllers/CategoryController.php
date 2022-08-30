@@ -31,7 +31,7 @@ class CategoryController extends Controller
         $uploaded_file_url = Cloudinary::upload($request->file('asset')->getRealPath())->getSecurePath();
 
         $asset = Asset::create([
-            'name' => $request->file('asset')->getFilename(),
+            'name' => $request->file('asset')->getClientOriginalName(),
             'path' => $uploaded_file_url,
             'size' => $request->file('asset')->getSize()
         ]);

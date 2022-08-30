@@ -12,6 +12,6 @@ class Category extends Model
 
     public function asset()
     {
-        return $this->hasOne(Asset::class, 'id', 'asset_id');
+        return $this->belongsTo(Asset::class);
     }
 }
